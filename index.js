@@ -6,7 +6,20 @@ import http from "node:http";
 //console.log(name + foo);
 
 const sever = http.createServer((request, response) => {
-    response.end(JSON.stringify({ name: "Mindx", age: "100" }));
+    console.log(request.method);
+    switch (request.url) {
+        case "/":
+            response.end
+                (JSON.stringify({ endpoint: request.url, method: request.method }));
+
+            break;
+        case "/hello":
+            response.end(JSON.stringify("Hello world !!!!"));
+            break;
+        default:
+            response.end(JSON.stringify("Not found"));
+            break;
+    }
 });
 
 sever.listen(3000);
